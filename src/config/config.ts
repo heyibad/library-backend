@@ -2,7 +2,9 @@ import { config as conf} from "dotenv"
 
 conf() // to load the .env file
 const _config={
-   port:process.env.PORT, 
+   PORT:process.env.PORT, 
+   MONGO_URI:process.env.MONGO_URI,
+   DB_NAME:"Library"
 }
 
 
