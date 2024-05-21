@@ -1,3 +1,4 @@
+import createHttpError from "http-errors";
 import app from "./app";
 import { config } from "./config/config";
 import connectDB from "./config/db";
@@ -23,7 +24,6 @@ const startServer = () => {
 })();
 
 app.get("/", (req, res) => {
-    res.json({
-        message: "Hello World!",
-    });
+    const error = createHttpError(404, "This is an error");
+    throw error;
 });

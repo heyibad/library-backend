@@ -4,7 +4,7 @@ conf() // to load the .env file
 const _config={
    PORT:process.env.PORT, 
    MONGO_URI:process.env.MONGO_URI,
-   DB_NAME:"Library"
+   DB_NAME:"Library",
 }
 
 
