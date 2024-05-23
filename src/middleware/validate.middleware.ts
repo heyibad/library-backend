@@ -8,7 +8,6 @@ export const validate =
             const { data, success, error } = await schema.safeParseAsync(
                 req.body
             );
-            console.log(data, success);
             if (!success) {
                 return res.status(400).json({
                     success,
