@@ -5,6 +5,7 @@ const _config={
    PORT:process.env.PORT, 
    MONGO_URI:process.env.MONGO_URI,
    DB_NAME:"Library",
+   EMAIL_API:process.env.EMAIL_API,
 }
 
 
