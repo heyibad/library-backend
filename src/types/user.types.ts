@@ -10,4 +10,7 @@ export interface UserModel {
     isVerified: boolean;
     verifyAndForgotCode: string;
     CodeExpiry: Date;
+    generateAccessToken: () => string;
+    generateRefreshToken: () => string;
+    comparePassword: (password: string) => boolean;
 }
