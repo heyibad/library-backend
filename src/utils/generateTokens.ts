@@ -13,7 +13,7 @@ const generateTokens = async (userId: string): Promise<Tokens> => {
     let refreshToken: string = user.generateRefreshToken();
     let accessToken: string = user.generateAccessToken();
     user.refreshToken = refreshToken;
-    await user.save();
+    await user.save({validateBeforeSave: false});
     return { accessToken, refreshToken };
 };
 
