@@ -1,5 +1,8 @@
 import mongoose from "mongoose";
 import { UserModel } from "../types/user.types";
+import bcrypt from "bcrypt";
+import jwt from "jsonwebtoken";
+import { config } from "../config/config";
 
 const userSchema = new mongoose.Schema<UserModel>(
     {
@@ -56,5 +59,31 @@ const userSchema = new mongoose.Schema<UserModel>(
         timestamps: true,
     }
 );
+userSchema.pre("save", async function (next): Promise<void> {
+    // Check if the password field has been changed
+    if (!this.isModified("password")) {
+        return next(); // If not, just move on
+    }
 
+    // If the password has been changed, hash it
+    this.password = await bcrypt.hash(this.password, 10);
+
+    next(); // Continue with the save operation
+});
+
+userSchema.methods.comparePassword = async function (
+    candidatePassword: string
+): Promise<boolean> {
+    return await bcrypt.compare(candidatePassword, this.password);
+};
+userSchema.methods.generateRefreshToken = function (): string {
+    return jwt.sign({ _id: this._id }, config.REFRESH_TOKEN_SECRET!, {
+        expiresIn: "7d",
+    });
+};
+userSchema.methods.generateAccessToken = function (): string {
+    return jwt.sign({ _id: this._id }, config.ACCESS_TOKEN_SECRET!, {
+        expiresIn: "1h",
+    });
+};
 export const User = mongoose.model<UserModel>("User", userSchema);
