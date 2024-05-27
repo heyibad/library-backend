@@ -17,12 +17,39 @@ const userSchema = new mongoose.Schema<UserModel>(
             unique: true,
             trim: true,
         },
+        name: {
+            type: String,
+            trim: true,
+            max: [25, "Name must be at most 25 characters long"],
+        },
         password: {
             type: String,
-            required: [true, "Password is required"],
             trim: true,
             min: [6, "Password must be at least 6 characters long"],
             max: [16, "Password must be at most 16 characters long"],
+        },
+        refreshToken: {
+            type: String,
+            default: "",
+        },
+        profilePicture: {
+            type: String,
+            default: "",
+        },
+        coverPicture: {
+            type: String,
+            default: "",
+        },
+        isVerified: {
+            type: Boolean,
+            default: false,
+        },
+        verifyAndForgotCode: {
+            type: String,
+            default: "",
+        },
+        CodeExpiry: {
+            type: Date,
         },
     },
     {
