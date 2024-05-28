@@ -12,6 +12,8 @@ const _config = {
     GITHUB_CLIENT_SECRET: process.env.GITHUB_CLIENT_SECRET,
     GOOGLE_CLIENT_ID: process.env.GOOGLE_CLIENT_ID,
     GOOGLE_CLIENT_SECRET: process.env.GOOGLE_CLIENT_SECRET,
+    CORS: process.env.CORS,
+    DOMAIN: process.env.DOMAIN,
 };
 
 export const config = Object.freeze(_config);

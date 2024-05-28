@@ -4,7 +4,7 @@ import { config } from "./config/config";
 import connectDB from "./config/db";
 
 const startServer = () => {
-    const port = config.PORT || 3000;
+    const port = config.PORT || 8000;
 
     app.listen(port, () => {
         console.log(`Server is running at http://localhost:${port}`);
